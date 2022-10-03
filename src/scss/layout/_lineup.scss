@@ -1,0 +1,76 @@
+@use '../base/variable' as v;
+@use '../base/mixins' as m;
+
+.lineup {
+    background-color: v.$rosa;
+    padding: 5rem 0;
+
+    h3, p {
+        text-align: center;
+        color: v.$blanco;
+    }
+    .dia {
+        text-transform: uppercase;
+        margin: 5rem 0;
+    }
+}
+
+.escenarios-contenedor {
+    @include m.tablet {
+        @include m.grid(2, 5rem); //2 columnas con una separacion de 5 rem
+    }
+
+    p {
+        color: v.$negro;
+    }
+    
+}
+
+.escenario {
+    padding-top: 2rem;
+    
+    .nombre-escenario {
+        &:after { //pseudoelemento      //para crear un espacio entre el h3 y el p
+            content: ''; //siempre es necesario tener un content al crear un pseudoelemento
+            display: block;
+            width: 20rem;
+            height: 10rem;
+            background-size: 15rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            margin: 2rem auto 0 auto; //centrado y un poco separado del h3
+        }
+    }
+}
+.edm .nombre-escenario:after { //el after indica que ahi se posicionara la imagen, en el espacio creado anteriormente en la clase escenario
+    background-image: url(../img/icono_edm.png);
+}
+.rock .nombre-escenario:after {
+    background-image: url(../img/icono_rock.png);
+}
+
+.calendario {
+    @include m.resetear-lista;
+    li {
+        padding: 2.5rem;
+        font-weight: 700;
+        span {
+            font-weight: 400;
+        }
+    }
+}
+
+.bg-amarillo {
+    background-color: v.$amarillo;
+
+    li:nth-child(odd) { //con esta utilidad seleccionamos todos los elementos impares de la lista, y asi los pintamos mas oscuros
+        background-color: darken(v.$amarillo, 15%); //Utilidad de SASS: para oscurecer el color, parametros: color, luego porcentaje de oscurecer
+    }
+}
+.bg-verde {
+    background-color: v.$verde;
+
+    li:nth-child(odd) { 
+        background-color: darken(v.$verde, 10%); 
+    }
+}
